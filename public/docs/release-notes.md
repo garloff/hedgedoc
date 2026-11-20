@@ -6,6 +6,7 @@
 
 - Fixed logins via OAuth-based providers (e.g. GitHub, GitLab, OAuth2) failing with an internal error, caused by a circular import between the user model and the auth utilities
 - Fixed the OAuth2 `accessRole` check continuing the login after denying it, which created a user account for denied users
+- Fixed new users of OAuth-based providers being stored without their profile id, which created a new account on every login
 
 ## <i class="fa fa-tag"></i> 1.12.2 <i class="fa fa-calendar-o"></i> 2026-11-04
 
