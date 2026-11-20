@@ -161,9 +161,10 @@ these are rarely used for various reasons.
 
 | config file | environment               | **default** and example value        | description                                                                                                                                                                     |
 |-------------|---------------------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `github`    |                           | `{clientID: ..., clientSecret: ...}` | An object containing the client ID and the client secret obtained by the GitHub developer page. For more details have a look at the [GitHub auth guide](guides/auth/github.md). |
+| `github`    |                           | `{clientID: ..., clientSecret: ..., requiredOrgs: [...]}` | An object containing the client ID and the client secret obtained by the GitHub developer page. For more details have a look at the [GitHub auth guide](guides/auth/github.md). |
 |             | `CMD_GITHUB_CLIENTID`     | **no default**                       | GitHub API client id                                                                                                                                                            |
 |             | `CMD_GITHUB_CLIENTSECRET` | **no default**                       | GitHub API client secret                                                                                                                                                        |
+|             | `CMD_GITHUB_REQUIREDORGS` | **no default**, `my-org, other-org`  | Comma-separated list of GitHub organizations. If set, only active members of at least one of them can log in. See the [GitHub auth guide](guides/auth/github.md#restricting-login-to-organization-members). |
 
 ### GitLab Login
 

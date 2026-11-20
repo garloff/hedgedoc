@@ -2,6 +2,10 @@
 
 ## <i class="fa fa-tag"></i> 1.x.x <i class="fa fa-calendar-o"></i> UNRELEASED
 
+### Enhancements
+
+- Added `requiredOrgs` for the GitHub login (`CMD_GITHUB_REQUIREDORGS`) to restrict login to members of specific GitHub organizations
+
 ### Bugfixes
 
 - Fixed logins via OAuth-based providers (e.g. GitHub, GitLab, OAuth2) failing with an internal error, caused by a circular import between the user model and the auth utilities

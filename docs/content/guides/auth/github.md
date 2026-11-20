@@ -33,3 +33,43 @@
     CMD_GITHUB_CLIENTID=3747d30eaccXXXXXXXXX
     CMD_GITHUB_CLIENTSECRET=2a8e682948eee0c580XXXXXXXXXXXXXXXXXXXXXX
     ```
+
+## Restricting login to organization members
+
+By default, every GitHub user can log in. To allow only members of certain GitHub organizations, list them in
+`requiredOrgs` (or `CMD_GITHUB_REQUIREDORGS`, comma-separated). A user needs to be an active member of at least one of
+the listed organizations.
+
+- `config.json`:
+  ```json
+  {
+    "production": {
+      "github": {
+        "clientID": "3747d30eaccXXXXXXXXX",
+        "clientSecret": "2a8e682948eee0c580XXXXXXXXXXXXXXXXXXXXXX",
+        "requiredOrgs": ["my-org", "other-org"]
+      }
+    }
+  }
+  ```
+
+- environment variables:
+  ```shell
+  CMD_GITHUB_REQUIREDORGS=my-org,other-org
+  ```
+
+Notes:
+
+- HedgeDoc additionally requests the `read:org` scope, so that private (concealed) memberships can be checked as well.
+  Users who authorized HedgeDoc before will be asked once to grant this additional scope.
+
+- If an organization has [OAuth app access restrictions](https://docs.github.com/en/organizations/managing-oauth-access-to-your-organizations-data/about-oauth-app-access-restrictions)
+  enabled (the default for new organizations), HedgeDoc can't see memberships until an organization owner approves the
+  OAuth app. OAuth apps owned by the organization itself are approved automatically. Denied lookups are logged as
+  warnings.
+
+- Membership is only checked when logging in. Users who leave an organization stay logged in until their session
+  expires (see `sessionLife`).
+
+- Restricting the login does not restrict anonymous access. Review `allowAnonymous`, `allowAnonymousEdits` and
+  `defaultPermission` as well.
